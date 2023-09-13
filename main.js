@@ -1,7 +1,8 @@
 $(document).ready(function(){
-
     
+    var myAlert = document.getElementById('myAlert')
     var api = "https://school-management-api.xeersoft.co.th/api/timetable/allyesr"
+    var api2 = "https://timetable.newton.ac.th/year/"
     // var yr = "https://school-management-api-dev.xeersoft.co.th/api/timetable/"
     let url = `${api}`;
     $.ajax({
@@ -19,7 +20,7 @@ $(document).ready(function(){
                 card.append(`<div class="card-body">
                 <h5 class="class-title">${data[i].lv_title}</h5>
                 <p class="class-text">${data[i].lv_academic}</p>
-                ${data[i].lv_tt_link ? `<a href="${data[i].lv_tt_code}" class="btn btn-primary">View Here</a>` : `<a class="btn btn-outline-danger">Not Available</a>`}
+                ${data[i].lv_tt_link ? `<a href="${api2}${data[i].lv_tt_code}" class="btn btn-primary">View Here</a>` : `<a class="btn btn-outline-danger">Not Available</a>`}
                 </div>`); 
                 
                 // Append the content to the new card-body element (For Custom year)
@@ -32,8 +33,13 @@ $(document).ready(function(){
                     opacity: 1
                 },500)
             });
-            return false;
-        }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("Error Thrown: " + errorThrown);
+            console.log("Text Status: " + textStatus);
+            console.log("XMLHttpRequest: " + XMLHttpRequest);
+            console.warn(XMLHttpRequest.responseText)
+       }
         
     });
     
