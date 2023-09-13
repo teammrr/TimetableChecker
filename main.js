@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     
     var api = "https://school-management-api.xeersoft.co.th/api/timetable/allyesr"
+    // var yr = "https://school-management-api-dev.xeersoft.co.th/api/timetable/"
     let url = `${api}`;
     $.ajax({
         type: "GET",
@@ -18,7 +19,7 @@ $(document).ready(function(){
                 card.append(`<div class="card-body">
                 <h5 class="class-title">${data[i].lv_title}</h5>
                 <p class="class-text">${data[i].lv_academic}</p>
-                ${data[i].lv_tt_link ? `<a href="${data[i].lv_tt_link}" class="btn btn-primary">Class Schedule</a>` : ''}
+                ${data[i].lv_tt_link ? `<a href="${data[i].lv_tt_code}" class="btn btn-primary">View Here</a>` : `<a class="btn btn-outline-danger">Not Available</a>`}
                 </div>`); 
                 
                 // Append the content to the new card-body element (For Custom year)
